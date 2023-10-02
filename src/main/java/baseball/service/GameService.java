@@ -13,12 +13,14 @@ import static baseball.util.Result.BALL;
 import static baseball.util.Result.NOTHING;
 
 public class GameService {
+    private static final int ZERO = 0;
     private final OutputView outputView;
     private final InputView inputView;
     private List<Integer> computerNumber;
-
     private Player player;
     private List<Integer> playerNumber;
+    private StringBuilder sb;
+    private int strike,ball;
 
     public GameService() {
         this.outputView = new OutputView();
@@ -68,6 +70,24 @@ public class GameService {
             }
         }
         return ball;
+    }
+
+    /* 결과값 리턴 */
+    public String output() {
+        sb = new StringBuilder();
+        strike = strike();
+        ball = ball();
+
+        /* 하드코딩... 리팩토링 필요 */
+        if(strike > ZERO && ball == ZERO)
+            return sb.append(strike).append(STRIKE.getMessage()).toString();
+        if(strike == ZERO && ball > ZERO)
+            return sb.append(ball).append(BALL.getMessage()).toString();
+        if(strike > ZERO && ball > ZERO)
+            return sb.append(ball).append(BALL.getMessage()).append(" ")
+                    .append(strike).append(STRIKE.getMessage()).toString();
+
+        return sb.append(NOTHING.getMessage()).toString();
     }
 
 
