@@ -48,5 +48,27 @@ public class GameService {
         playerNumber = player.getAnswer();
     }
 
+    /* Strike 카운트 */
+    private int strike() {
+        int strike = 0;
+        for(int i=0;i<3;i++){
+            if(computerNumber.get(i).equals(playerNumber.get(i)))
+                strike++;
+        }
+        return strike;
+    }
+
+    /* ball 카운트 */
+    private int ball() {
+        int ball = 0;
+        for(int i=0;i<3;i++){
+            if(!computerNumber.get(i).equals(playerNumber.get(i))
+                    && computerNumber.contains(playerNumber.get(i))){
+                ball++;
+            }
+        }
+        return ball;
+    }
+
 
 }
