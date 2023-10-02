@@ -28,5 +28,16 @@ public class GameService {
         this.computerNumber = new Computer().getNumbers();
     }
 
+    /* 게임 시작 뷰 */
+    public void init() {
+        outputView.init();
+    }
+
+    /* 게임 종료 뷰 */
+    private void endGame() {
+        outputView.endGame();
+        outputView.restart();
+    }
+
 
 }
