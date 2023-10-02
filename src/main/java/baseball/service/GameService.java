@@ -14,6 +14,7 @@ import static baseball.util.Result.NOTHING;
 
 public class GameService {
     private static final int ZERO = 0;
+    private static final int CLEAR = 3;
     private final OutputView outputView;
     private final InputView inputView;
     private List<Integer> computerNumber;
@@ -88,6 +89,30 @@ public class GameService {
                     .append(strike).append(STRIKE.getMessage()).toString();
 
         return sb.append(NOTHING.getMessage()).toString();
+    }
+
+    /* 재시작 여부 확인 */
+    public boolean restartGame() {
+        int restartNumber = inputView.getRestartNumber();
+        switch(restartNumber) {
+            case 1 : //enum으로 빼려고 했지만 switch case문에는 상수 사용 불가
+                createComputerNumber();
+                return true;
+            case 2 :
+                outputView.notContinue();
+                return false;
+            default :
+                throw new IllegalArgumentException("1또는 2의 값만 입력해주세요");
+        }
+    }
+
+    /* 끝났는지 확인 */
+    public boolean isEnd() {
+        if(strike() == CLEAR) {
+            endGame();
+            return true;
+        }
+        return false;
     }
 
 
