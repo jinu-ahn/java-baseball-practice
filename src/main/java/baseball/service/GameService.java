@@ -17,6 +17,9 @@ public class GameService {
     private final InputView inputView;
     private List<Integer> computerNumber;
 
+    private Player player;
+    private List<Integer> playerNumber;
+
     public GameService() {
         this.outputView = new OutputView();
         this.inputView = new InputView();
@@ -37,6 +40,12 @@ public class GameService {
     private void endGame() {
         outputView.endGame();
         outputView.restart();
+    }
+
+    /* 입력받은 값을 List에 저장하기 */
+    public void inputNumber() {
+        player = inputView.getInputNumber();
+        playerNumber = player.getAnswer();
     }
 
 
