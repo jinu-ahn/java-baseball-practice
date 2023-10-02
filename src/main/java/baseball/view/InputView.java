@@ -15,4 +15,9 @@ public class InputView {
         return new Player(number);
     }
 
+    /* 재시작 , 종료 번호 받기 */
+    public int getRestartNumber() {
+        int number = Integer.parseInt(Console.readLine());
+        return number;
+    }
 }
